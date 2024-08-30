@@ -10,9 +10,9 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(valid_params)
 
-    if @user.save
+    if @user.save_in_cache
       sign_in(@user)
-      redirect_to new_session_path(@user)
+      redirect_to new_session_path
     else
       flash.now[:alert] = @user.errors.full_messages.join(', ')
       render :new, status: :unprocessable_entity

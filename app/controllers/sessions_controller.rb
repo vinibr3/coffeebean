@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_email(valid_params[:email])
+    @user = User.all_from_cache[valid_params[:email]]
                 .try(:authenticate, valid_params[:password])
 
     if @user

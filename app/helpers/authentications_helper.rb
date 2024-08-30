@@ -4,7 +4,7 @@ module AuthenticationsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by_email(session[:user_email]) if session[:user_email]
+    @current_user ||= User.all_from_cache[session[:user_email]] if session[:user_email]
   end
 
   def sign_out
