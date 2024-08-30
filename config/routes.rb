@@ -3,4 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  scope '/:locale' do
+    resources :sessions, only: %i[new create destroy]
+    resources :registrations, only: %i[new show create]
+
+    get '/home', to: 'pages#home'
+  end
+
+  root 'pages#home'
 end

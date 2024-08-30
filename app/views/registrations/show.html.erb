@@ -1,0 +1,29 @@
+<div class='row'>
+  <div class='col'>
+    <h2><%= t('.title') %></h2>
+    <div>
+      <p><%= User.human_attribute_name(:name) %>:</p>
+      <%= current_user.name %>
+    </div>
+    <div>
+      <p><%= User.human_attribute_name(:email) %>:</p>
+      <%= current_user.email %>
+    </div>
+    <% ipinfo = ipinfo(request.remote_ip) %>
+    <div>
+      <p><%= t('.city') %>:</p>
+      <%= ipinfo['city'] %>
+    </div>
+    <div>
+      <p><%= t('.region') %>:</p>
+      <%= ipinfo['region'] %>
+    </div>
+    <div>
+      <p><%= t('.country') %>:</p>
+      <%= ipinfo['country'] %>
+    </div>
+    <div>
+       <%= link_to t('helpers.sign_out'), session_path(current_user), data: { turbo_method: :delete } %>
+    </div>
+  </div>
+</div>

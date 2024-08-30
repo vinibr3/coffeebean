@@ -30,4 +30,34 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
+  attributes:
+    email: Email
+    name: Name
+    password: Password
+    password_confirmation: Password Confirmation
+  errors:
+    messages:
+      digits: must have %{count} digits at least
+      lower: must have %{count} lowercase character at least
+      upper: must have %{count} uppercase character at least
+      special_character: must have %{count} special character at least
+  sessions:
+    new:
+      title: Login
+      submit: Login
+    create:
+      unauthenticated: Invalids email or password
+  registrations:
+    new:
+      title: New Account
+      submit: Create my account
+      finish: Finish
+    show:
+      title: My account
+      city: City
+      region: Region
+      country: Country
+  helpers:
+    sign_out: Sign out
+    sign_in: Sign in
