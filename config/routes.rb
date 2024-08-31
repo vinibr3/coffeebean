@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   scope '/:locale' do
-    resources :sessions, only: %i[new create destroy]
+    resources :sessions, only: %i[new create]
     resources :registrations, only: %i[new show create]
 
     get '/home', to: 'pages#home'
+    get '/destroy_sessions', to: 'sessions#destroy'
   end
 
   root 'pages#home'

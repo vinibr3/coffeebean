@@ -7,11 +7,10 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.all_from_cache[valid_params[:email]]
-                .try(:authenticate, valid_params[:password])
 
-    if @user
+    if @user && @user.authenticate(valid_params[:password])
       sign_in(@user)
-      redirect_to registration_path(@user)
+      redirect_to registration_path(id: 1)
     else
       flash.now[:alert] = t('.unauthenticated')
       render :new, status: :unprocessable_entity
@@ -20,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to home_path
+    redirect_to new_session_path
   end
 
   private
