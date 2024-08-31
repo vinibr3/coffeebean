@@ -45,12 +45,12 @@ class User < ApplicationRecord
   end
 
   def password_characters_count
-    errors.add(:password, :digits, count: 2) if password.scan(/\d/).length < 2
-    errors.add(:password, :upper, count: 2) if password.scan(/[[:upper:]]/).length < 2
-    errors.add(:password, :lower, count: 2) if password.scan(/[[:lower:]]/).length < 2
+    errors.add(:password, :digits, count: 2) if password.to_s.scan(/\d/).length < 2
+    errors.add(:password, :upper, count: 2) if password.to_s.scan(/[[:upper:]]/).length < 2
+    errors.add(:password, :lower, count: 2) if password.to_s.scan(/[[:lower:]]/).length < 2
 
     special_characters = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".chars
-    errors.add(:password, :special_character, count: 2) if password.chars.count{|p| p.in?(special_characters)} < 2
+    errors.add(:password, :special_character, count: 2) if password.to_s.chars.count{|p| p.in?(special_characters)} < 2
   end
 
   def uniqueness_of_email
